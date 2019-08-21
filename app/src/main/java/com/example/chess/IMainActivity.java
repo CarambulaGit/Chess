@@ -1,7 +1,10 @@
 package com.example.chess;
 
 import android.view.View;
+import android.widget.ImageView;
 
 interface IMainActivity {
-    public void changeImages (View view1, View view2 );
+    void changeImages (ImageView view1, ImageView view2, int indexOfFirstCell, int indexOfSecondCell);
+    void onImage (int indexOfCell, ImageView chosenImageView);
+    void log (String log);
 }
