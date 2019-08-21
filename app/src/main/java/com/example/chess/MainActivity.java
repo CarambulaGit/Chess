@@ -189,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     @Override
     public void onImage(int indexOfCell, ImageView chosenImageView) {
-        log(presenter.cell[indexOfCell].figure.toString());
         if (!thereIsChosenCell) {
             if (presenter.thisIsFigure(indexOfCell)) {
                 thereIsChosenCell = true;
@@ -202,7 +201,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
             thereIsChosenCell = false;
             tv.setText("There is a chosen cell: False");
             tv.setTextColor(Color.RED);
-            changeImages(chosenImage, chosenImageView, indexOfFigure, indexOfCell);
+            if (presenter.ThisMoveCorrect(indexOfFigure, indexOfCell)) {
+                changeImages(chosenImage, chosenImageView, indexOfFigure, indexOfCell);
+            }
         }
     }
 
