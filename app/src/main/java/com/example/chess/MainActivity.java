@@ -465,85 +465,108 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     @Override
     public void changeImages(ImageView img1, ImageView img2, int indexOfFirstCell, int indexOfSecondCell) {
-        log(presenter.);
         try {
             if (presenter.chosenCellTypeIsWhite(indexOfSecondCell)) {
                 switch (presenter.cell[indexOfFirstCell].figure) {
                     case WHITE_BISHOP:
                         img2.setImageResource(R.drawable.white_bishop_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_BISHOP;
+                        break;
                     case BLACK_BISHOP:
                         img2.setImageResource(R.drawable.black_bishop_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_BISHOP;
+                        break;
                     case WHITE_CASTLE:
                         img2.setImageResource(R.drawable.white_castle_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_CASTLE;
+                        break;
                     case BLACK_CASTLE:
                         img2.setImageResource(R.drawable.black_castle_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_CASTLE;
+                        break;
                     case WHITE_KING:
                         img2.setImageResource(R.drawable.white_king_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_KING;
+                        break;
                     case BLACK_KING:
                         img2.setImageResource(R.drawable.black_king_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_KING;
+                        break;
                     case WHITE_QUEEN:
                         img2.setImageResource(R.drawable.white_queen_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_QUEEN;
+                        break;
                     case BLACK_QUEEN:
                         img2.setImageResource(R.drawable.black_queen_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_QUEEN;
+                        break;
                     case WHITE_KNIGHT:
                         img2.setImageResource(R.drawable.white_horse_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_KNIGHT;
+                        break;
                     case BLACK_KNIGHT:
                         img2.setImageResource(R.drawable.black_horse_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_KNIGHT;
+                        break;
                     case WHITE_PAWN:
                         img2.setImageResource(R.drawable.white_pawn_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_PAWN;
+                        break;
                     case BLACK_PAWN:
                         img2.setImageResource(R.drawable.black_pawn_on_white);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_PAWN;
+                        break;
                 }
             } else {
                 switch (presenter.cell[indexOfFirstCell].figure) {
                     case WHITE_BISHOP:
                         img2.setImageResource(R.drawable.white_bishop_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_BISHOP;
+                        break;
                     case BLACK_BISHOP:
                         img2.setImageResource(R.drawable.black_bishop_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_BISHOP;
+                        break;
                     case WHITE_CASTLE:
                         img2.setImageResource(R.drawable.white_castle_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_CASTLE;
+                        break;
                     case BLACK_CASTLE:
                         img2.setImageResource(R.drawable.black_castle_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_CASTLE;
+                        break;
                     case WHITE_KING:
                         img2.setImageResource(R.drawable.white_king_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_KING;
+                        break;
                     case BLACK_KING:
                         img2.setImageResource(R.drawable.black_king_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_KING;
+                        break;
                     case WHITE_QUEEN:
                         img2.setImageResource(R.drawable.white_queen_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_QUEEN;
+                        break;
                     case BLACK_QUEEN:
                         img2.setImageResource(R.drawable.black_queen_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_QUEEN;
+                        break;
                     case WHITE_KNIGHT:
                         img2.setImageResource(R.drawable.white_horse_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_KNIGHT;
+                        break;
                     case BLACK_KNIGHT:
                         img2.setImageResource(R.drawable.black_horse_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_KNIGHT;
+                        break;
                     case WHITE_PAWN:
                         img2.setImageResource(R.drawable.white_pawn_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.WHITE_PAWN;
+                        break;
                     case BLACK_PAWN:
                         img2.setImageResource(R.drawable.black_pawn_on_black);
                         presenter.cell[indexOfSecondCell].figure = Cell.Figure.BLACK_PAWN;
+                        break;
                 }
             }
             if (presenter.chosenCellTypeIsWhite(indexOfFirstCell)) {
