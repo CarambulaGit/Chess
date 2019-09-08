@@ -1,14 +1,14 @@
 package com.example.chess;
 
 
-import android.util.Log;
-
 import com.example.chess.Cell.*;
 
 public class MainActivityPresenter {
     private IMainActivity activity;
     Cell[] cell = new Cell[65];
     int count = 1;
+    int deltaX;
+    int deltaY;
 
     MainActivityPresenter(IMainActivity activity) {
         this.activity = activity;
@@ -160,69 +160,103 @@ public class MainActivityPresenter {
     }
 
     private boolean knightMove(int indFig, int indCell) {
-        if (Math.abs(cell[indCell].x - cell[indFig].x) == 2 && Math.abs(cell[indCell].y - cell[indFig].y) == 1
-                || Math.abs(cell[indCell].x - cell[indFig].x) == 1 && Math.abs(cell[indCell].y - cell[indFig].y) == 2)
-            return true;
+        deltaX = cell[indCell].x - cell[indFig].x;
+        deltaY = cell[indCell].y - cell[indFig].y;
+        if (Math.abs(deltaX) == 2 && Math.abs(deltaY) == 1
+                || Math.abs(deltaX) == 1 && Math.abs(deltaY) == 2)
+            return !(cell[indCell].figType == cell[indFig].figType);
         return false;
     }
 
     private boolean castleMove(int indFig, int indCell) {
-        if (Math.abs(cell[indCell].x - cell[indFig].x) == 0
-                || Math.abs(cell[indCell].y - cell[indFig].y) == 0 )
-            return true;
+        deltaX = cell[indCell].x - cell[indFig].x;
+        deltaY = cell[indCell].y - cell[indFig].y;
+        if (Math.abs(deltaX) == 0 || Math.abs(deltaY) == 0)
+            return cleanWay(cell[indFig].x, cell[indFig].y, deltaX, deltaY, cell[indFig].figType);
         return false;
     }
 
     private boolean queenMove(int indFig, int indCell) {
-        if (Math.abs(cell[indCell].x - cell[indFig].x) == 0
-                || Math.abs(cell[indCell].y - cell[indFig].y) == 0
-                || Math.abs(cell[indCell].x - cell[indFig].x) ==  Math.abs(cell[indCell].y - cell[indFig].y))
-            return true;
+        deltaX = cell[indCell].x - cell[indFig].x;
+        deltaY = cell[indCell].y - cell[indFig].y;
+        if (Math.abs(deltaX) == 0
+                || Math.abs(deltaY) == 0
+                || Math.abs(deltaX) == Math.abs(deltaY))
+            return cleanWay(cell[indFig].x, cell[indFig].y, deltaX, deltaY, cell[indFig].figType);
         return false;
     }
 
     private boolean kingMove(int indFig, int indCell) {
-        if (Math.abs(cell[indCell].x - cell[indFig].x) <= 1
-                && Math.abs(cell[indCell].y - cell[indFig].y) <= 1)
-            return true;
+        deltaX = cell[indCell].x - cell[indFig].x;
+        deltaY = cell[indCell].y - cell[indFig].y;
+        if (Math.abs(deltaX) <= 1
+                && Math.abs(deltaY) <= 1)
+            return cleanWay(cell[indFig].x, cell[indFig].y, deltaX, deltaY, cell[indFig].figType);
         return false;
     }
 
     private boolean bishopMove(int indFig, int indCell) {
-//        if (cell[indFig].figType == FigType.WHITE) {
-        if (Math.abs(cell[indCell].x - cell[indFig].x) == Math.abs(cell[indCell].y - cell[indFig].y))
-            return true;
-//       } else {
-//            if (cell[indCell].x - cell[indFig].x == 1 && cell[indCell].y == cell[indFig].y)
-//                return true;
-//        }
+        deltaX = cell[indCell].x - cell[indFig].x;
+        deltaY = cell[indCell].y - cell[indFig].y;
+        if (Math.abs(deltaX) == Math.abs(deltaY))
+            return cleanWay(cell[indFig].x, cell[indFig].y, deltaX, deltaY, cell[indFig].figType);
         return false;
     }
 
     public boolean pawnMove(int indFig, int indCell) {
-        Log.wtf("myTAG", "We a here");
+        deltaX = cell[indCell].x - cell[indFig].x;
+        deltaY = cell[indCell].y - cell[indFig].y;
         if (cell[indFig].figType == FigType.WHITE) {
-            Log.wtf("myTAG", "We a here(1)");
-            if (cell[indFig].x == 2 && cell[indCell].x - cell[indFig].x == 2
-                    && cell[indCell].y == cell[indFig].y) {
+            if (deltaX == 1 && Math.abs(deltaY) == 1
+                    && cell[indCell].figType == FigType.BLACK)
                 return true;
-            } else {
-                if (cell[indCell].x - cell[indFig].x == 1 && cell[indCell].y == cell[indFig].y) {
-                    return true;
-                }
-            }
+            if (cell[indFig].x == 2 && deltaX == 2
+                    && deltaY == 0)
+                return cleanWay(cell[indFig].x, cell[indFig].y, deltaX, deltaY, cell[indFig].figType);
+            if (deltaX == 1 && deltaY == 0)
+                return cell[indCell].figType == FigType.NONE;
         } else {
-            Log.wtf("myTAG", "We a here(2)");
-            if (cell[indFig].x == 7 && cell[indCell].x - cell[indFig].x == -2
-                    && cell[indCell].y == cell[indFig].y) {
+            if (deltaX == -1 && Math.abs(deltaY) == 1
+                    && cell[indCell].figType == FigType.WHITE)
                 return true;
-            } else {
-                if (cell[indCell].x - cell[indFig].x == -1 && cell[indCell].y == cell[indFig].y) {
-                    return true;
-                }
-            }
+            if (cell[indFig].x == 7 && deltaX == -2
+                    && deltaY == 0)
+                return cleanWay(cell[indFig].x, cell[indFig].y, deltaX, deltaY, cell[indFig].figType);
+            if (deltaX == -1 && deltaY == 0)
+                return cell[indCell].figType == FigType.NONE;
         }
         return false;
+    }
+
+    public boolean cleanWay(int coordinateX, int coordinateY, int deltaX, int deltaY, FigType figType) {
+        int x = coordinateX;
+        int y = coordinateY;
+        for (int i = 0; i < Math.abs(deltaX) - 1; i++) {
+            if (deltaX > 0) {
+                x++;
+            } else {
+                if(deltaX < 0) x--;
+            }
+            if (deltaY > 0) {
+                y++;
+            } else {
+                if(deltaY < 0) y--;
+            }
+            if (thereIsFigure(indexOfCell(x, y))) {
+                return false;
+            }
+        }
+        if (cell[indexOfCell(coordinateX + deltaX, coordinateY + deltaY)].figType == figType)
+            return false;
+        return true;
+    }
+
+    public int indexOfCell(int coordinateX, int coordinateY) {
+        return coordinateY + 8 * (coordinateX - 1);
+    }
+
+    public boolean thereIsFigure(int indexOfCell) {
+        return cell[indexOfCell].figure != Figure.NONE;
     }
 }
 
