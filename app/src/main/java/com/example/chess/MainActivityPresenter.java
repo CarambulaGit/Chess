@@ -1,17 +1,25 @@
+//todo castling
+//todo queue for turns
+//todo check
+//todo checkmate
+//todo stalemate
+//todo en passant capture
+//todo promotion
+
 package com.example.chess;
 
 
 import com.example.chess.Cell.*;
 
 public class MainActivityPresenter {
-    private IMainActivity activity;
+//    private IMainActivity activity;
     Cell[] cell = new Cell[65];
     int count = 1;
     int deltaX;
     int deltaY;
 
     MainActivityPresenter(IMainActivity activity) {
-        this.activity = activity;
+//        this.activity = activity;
         initializationCells();
         addingAttributes();
     }
@@ -128,7 +136,6 @@ public class MainActivityPresenter {
         if (Math.abs(deltaX) <= 1
                 && Math.abs(deltaY) <= 1)
             return cleanWay(cell[indFig].x, cell[indFig].y, deltaX, deltaY, cell[indFig].figType);
-        //todo castling
         return false;
     }
 

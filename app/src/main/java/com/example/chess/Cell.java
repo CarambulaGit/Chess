@@ -27,6 +27,4 @@ public class Cell {
     Figure figure;
     int x;
     int y;
-    int id;
-
 }
