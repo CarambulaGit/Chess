@@ -12,9 +12,8 @@ package com.example.chess;
 import com.example.chess.Cell.*;
 
 public class MainActivityPresenter {
-//    private IMainActivity activity;
+    //    private IMainActivity activity;
     Cell[] cell = new Cell[65];
-    int count = 1;
     int deltaX;
     int deltaY;
 
@@ -31,6 +30,7 @@ public class MainActivityPresenter {
     }
 
     private void addingAttributes() {
+        int count = 1;
         for (int a = 1; a < 9; a++) {
             for (int b = 1; b < 9; b++) {
                 cell[count].x = a;
@@ -179,12 +179,12 @@ public class MainActivityPresenter {
             if (deltaX > 0) {
                 x++;
             } else {
-                if(deltaX < 0) x--;
+                if (deltaX < 0) x--;
             }
             if (deltaY > 0) {
                 y++;
             } else {
-                if(deltaY < 0) y--;
+                if (deltaY < 0) y--;
             }
             if (thereIsFigure(indexOfCell(x, y))) {
                 return false;
